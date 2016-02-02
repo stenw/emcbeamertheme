@@ -1,0 +1,49 @@
+\mode<presentation>
+% Frame title
+
+\defbeamertemplate{frame numbering}{counter}{\insertframenumber}
+\defbeamertemplate{frame numbering}{fraction}{
+  \insertframenumber/\inserttotalframenumber
+}
+
+\defbeamertemplate*{frametitle}{emc}[1][]
+{
+%\vskip0.1cm%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=10mm]{frametitle} 
+  \begin{tikzpicture}
+  \useasboundingbox(0,0) rectangle(\the\paperwidth,0.02625*\the\paperwidth);
+   \ifx\insertframesubtitle\@empty%
+     {\node[anchor=west, black,font=\large] at (0.1*\the\paperwidth,0.61){\insertframetitle};%
+ \foreach \x in {0,...,79}%
+ \fill[color=structure] (0.0125*\the\paperwidth*\x,0.02*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.02625*\the\paperwidth);}%      
+     \else%
+     {\node[anchor= west, black,font=\large] at (0.1*\the\paperwidth,0.31){\insertframetitle};%
+      \node[anchor= west, black,font=\small] at (0.2*\the\paperwidth,0.51){\insertframesubtitle};}%
+     \fi
+ \end{tikzpicture}
+ \end{beamercolorbox}
+}
+
+\defbeamertemplate{footline}{plain}{%
+  \begin{beamercolorbox}[wd=\textwidth, sep=3ex]{footline}%
+    \hfill%
+    \usebeamertemplate*{frame numbering}
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{footline}{emc}{%
+\ifnum \insertpagenumber=1
+\leavevmode%
+\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+\end{beamercolorbox}}%
+\else
+\leavevmode%
+\hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\hfill%
+\insertframenumber\,/\,\inserttotalframenumber %\pgfuseimage{fg:logoNoText}
+	{\pgftext[at=\pgfpointxy{0}{0.4},right,base]{\pgfuseimage{fg:logoNoText}}}%
+\end{beamercolorbox}}%
+\vskip0pt%
+\fi
+}
+\mode<all>

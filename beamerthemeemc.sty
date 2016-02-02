@@ -1,0 +1,26 @@
+\mode<presentation>
+
+\RequirePackage{tikz}
+\usepackage[absolute,overlay]{textpos} 
+\usetikzlibrary{calc}
+
+\useinnertheme{emc}
+\useoutertheme{emc}
+\usecolortheme{emc}
+\usefonttheme[onlymath]{serif}
+\usepackage{eulervm}       
+\usepackage[scaled ]{helvet}         
+
+\pgfdeclareimage[width=25mm]{fg:logo}{Logo1.pdf} 
+\pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoText.pdf} 
+%\logo{\includegraphics[height=6mm]{logo1NoText.pdf}}
+
+\newcommand*{\instlogo}[1]{}
+\newcommand*{\printinstlogo}{}
+\renewcommand*{\instlogo}[1]{\renewcommand*{\printinstlogo}{#1}}
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[default]
+
+\mode<all>

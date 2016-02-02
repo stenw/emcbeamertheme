@@ -1,0 +1,48 @@
+\mode<presentation>
+\setbeamertemplate{background}{
+\usebeamercolor{palette tertiary}
+ \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+   \ifnum\thepage=1\relax%
+  \fill[color=bg] (0,0.8*\the\paperheight) rectangle(\the\paperwidth,\the\paperheight);
+  \foreach \x in {0,...,79}
+     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.6*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.60625*\the\paperwidth);
+  \foreach \x in {0,...,79}
+     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth);
+  \fi      
+  \ifnum\thepage>1\relax%
+  \fill[white, opacity=1] (0,0) rectangle(\the\paperwidth, \the\paperheight);
+  \foreach \x in {0,...,79}
+     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth); 
+  \fi
+ \end{tikzpicture}
+}
+\defbeamertemplate*{title page}{emc}[1][]{
+ \centering\vskip3cm%
+ \begin{beamercolorbox}[wd=12cm, leftskip=3cm, sep= 8pt, #1]{title page header}
+  \centering\usebeamerfont{title}\inserttitle\par%
+ \end{beamercolorbox}%
+ \begin {beamercolorbox}[sep=0pt]{subtitle}
+		\centering\usebeamerfont{subtitle in title page}\insertsubtitle
+	\end {beamercolorbox}
+ \vskip0.75cm%
+ {\pgfuseimage{fg:logo}}%
+ 	%{\pgftext[at=\pgfpointxy{2.21}{0.2},right,base]{\pgfuseimage{fg:logo}}}%
+   \vskip0.75cm%
+ \begin{beamercolorbox}[wd=12cm,leftskip=3cm, sep= 8pt, #1]{author}
+	   \centering\usebeamerfont{author}\insertauthor%
+ \end{beamercolorbox}%
+ \vskip0.2cm%
+\begin{beamercolorbox}[wd=12cm,leftskip=3cm,sep=8pt,#1]{date}
+  \centering\usebeamerfont{author}\insertdate\par%
+ \end{beamercolorbox}%
+ \vfill
+}
+%\mode<all>
+
+
+
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{items}[square]
+
+\mode<all>

@@ -1,0 +1,76 @@
+\documentclass[12pt]{beamer}
+\usetheme{emc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Sten Willemsen}
+\title{EMC Presentation}
+\subtitle{AaAaA}
+%\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo1NoText.pdf}}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+%\institute{} 
+%\date{} 
+%\subject{} 
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\begin{textblock*}{\textwidth}(.25in,2in)
+  %\pgfuseimage{fg:logo}
+\end{textblock*} 
+\end{frame}
+
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{The First Section}
+
+\begin{frame}{myframetitle}
+testtje
+testje2
+\begin{itemize}
+\item an item
+\item o \alert{no}!
+\begin{itemize}
+\item 2nd level
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Enumerations}
+      \begin{enumerate}
+        \item First, \item Second and \item Last.
+      \end{enumerate}
+       \begin{description}
+        \item[PowerPoint] Meeh. \item[Beamer] Yeeeha.
+      \end{description}
+\end{frame}
+
+\begin{frame}{Blocks}
+    \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}      
+      
+\end{frame}
+
+\begin{frame}{Math}
+  \begin{equation*}
+    e = \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n
+  \end{equation*}
+\end{frame}
+
+% not yet imp[lemented
+%\plain{Questions?}
+
+\end{document}
