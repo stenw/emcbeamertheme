@@ -1,6 +1,6 @@
 \mode<presentation>
 \setbeamertemplate{background}{
-\usebeamercolor{palette tertiary}
+\usebeamercolor{palette tertiary}%
  \begin{tikzpicture}
   \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
    \ifnum\thepage=1\relax%
@@ -11,7 +11,6 @@
      \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth);
   \fi      
   \ifnum\thepage>1\relax%
-  \fill[white, opacity=1] (0,0) rectangle(\the\paperwidth, \the\paperheight);
   \foreach \x in {0,...,79}
      \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth); 
   \fi

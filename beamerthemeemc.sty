@@ -1,8 +1,24 @@
 \mode<presentation>
 
 \RequirePackage{tikz}
+\RequirePackage{pgfopts}
 \usepackage[absolute,overlay]{textpos} 
 \usetikzlibrary{calc}
+
+\newcommand{\emcset}[1]{\pgfkeys{/emc/.cd,#1}}
+
+\pgfkeys{/emc/.cd,
+  .search also={
+    /emc/color,
+    /emc/inner,
+    /emc/outer,
+  }
+}
+\newcommand{\@emc@setdefaults}{
+  \pgfkeys{/emc/.cd,
+ %   titleformat plain=regular,
+  }
+}
 
 \useinnertheme{emc}
 \useoutertheme{emc}
@@ -22,5 +38,7 @@
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[default]
-
+\@emc@setdefaults
+\ProcessPgfOptions{/emc}
 \mode<all>
+\endinput

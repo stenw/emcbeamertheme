@@ -1,5 +1,7 @@
 \documentclass[12pt]{beamer}
-\usetheme{emc}
+\usepackage{pgfkeys}
+\usepackage{pgfopts}
+\usetheme[color/background=light]{emc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -15,7 +17,7 @@
 %\institute{} 
 %\date{} 
 %\subject{} 
-
+%\emcset{color/background=light}
 \begin{document}
 \begin{frame}
 	\titlepage
@@ -70,6 +72,19 @@ testje2
   \end{equation*}
 \end{frame}
 
+\begin{frame}[plain]
+  A plain sheet
+\end{frame}
+ 
+ \emcset{color/background=dark}
+\begin{frame}{A change of color}
+\begin{itemize}
+  \item Here we change the color scheme halfway to dark
+    \item However it does not completely work yet.
+    \item We need to redefine some of the elements on the sheet
+\end{itemize}   
+\end{frame}
+ \emcset{color/background=light}
 % not yet imp[lemented
 %\plain{Questions?}
 

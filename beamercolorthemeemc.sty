@@ -13,19 +13,17 @@
 %    transparent/.code=\@emc@block@transparent,
 %    fill/.code=\@emc@block@fill,
 %}
-%\pgfkeys{
-%  /emc/color/background/.cd,
-%    .is choice,
-%    dark/.code=\@emc@colors@dark,
-%    light/.code=\@emc@colors@light,
-%}
-%
-%\pgfkeys{
-%  /emc/color/background/.cd,
-%    .is choice,
-%    dark/.code=\@emc@colors@dark,
-%    light/.code=\@emc@colors@light,
-%}
+\pgfkeys{
+  /emc/color/background/.cd,
+    .is choice,
+    dark/.code=\@emc@colors@dark,
+    light/.code=\@emc@colors@light,
+}
+\newcommand{\@emc@color@setdefaults}{
+  \pgfkeys{/emc/color/.cd,
+    background=dark,
+  }
+}
 % \begin{macro}{block}
 % This option controls whether the blocks are filled or transparent.
 %    \begin{macrocode}
@@ -38,23 +36,30 @@
 %    \begin{macrocode}
 %    \end{macro}
 
-%\newcommand{\@emc@colors@dark}{
-%  \setbeamercolor{normal text}{%
-%    fg=black,
-%    bg=emcfadedblue
-%  }
-%}
-%\newcommand{\@emc@colors@light}{
+\newcommand{\@emc@colors@dark}{
   \setbeamercolor{normal text}{%
-    fg=black,
-    bg=white
+      fg=emclblue,
+    bg=emcdblue
   }
-%}
+  \setbeamercolor{structure}{fg=white}
+  \setbeamercolor{background canvas}{bg=emcdblue}
+}
+\newcommand{\@emc@colors@light}{
+  \setbeamercolor{normal text}{%
+   fg=black,
+    bg=emcfadedblue
+  }
+  \setbeamercolor{structure}{fg=emcdblue}
+  \setbeamercolor{background canvas}{bg=white}
+}
 
 % General
-\setbeamercolor{structure}{fg=emcdblue}
+
 \setbeamercolor{alerted text}{fg=orange}
 \setbeamercolor{example text}{fg=black}
+
+
+
 
 \setbeamercolor{background canvas}{bg=white}
 
@@ -125,7 +130,8 @@
 %  use={block title, normal text},
 %  bg=block title.bg!1!normal text.bg
 %}
-\setbeamercolor{page number in head/foot}{fg=fg!50!bg}
+%\setbeamercolor{page number in head/foot}{fg=fg!50!bg}
 %\@emc@color@setdefaults
-%\ProcessPgfPackageOptions{/emc/color}
+\ProcessPgfPackageOptions{/emc/color}
 \mode<all>
+\endinput
