@@ -7,93 +7,92 @@
 \definecolor{emcgrey}{RGB}{182,188,213}
 \definecolor{emcfadedblue}{RGB}{207,236,249}
 
-%\pgfkeys{
-%  /emc/color/block/.cd,
-%    .is choice,
-%    transparent/.code=\@emc@block@transparent,
-%    fill/.code=\@emc@block@fill,
-%}
+
 \pgfkeys{
   /emc/color/background/.cd,
     .is choice,
-    dark/.code=\@emc@colors@dark,
-    light/.code=\@emc@colors@light,
+    darkblue/.code=\@emc@colors@darkblue,
+    lightblue/.code=\@emc@colors@lightblue,
+    white/.code=\@emc@colors@white,
 }
 \newcommand{\@emc@color@setdefaults}{
   \pgfkeys{/emc/color/.cd,
-    background=dark,
+    background=white,
   }
-}
-% \begin{macro}{block}
-% This option controls whether the blocks are filled or transparent.
-%    \begin{macrocode}
-%\newcommand{\@emc@color@setdefaults}{
-%  \pgfkeys{/emc/color/.cd,
-%    background=light,
-%    block=transparent,
-%  }
-%}
-%    \begin{macrocode}
-%    \end{macro}
-
-\newcommand{\@emc@colors@dark}{
-  \setbeamercolor{normal text}{%
-      fg=emclblue,
-    bg=emcdblue
-  }
-  \setbeamercolor{structure}{fg=white}
-  \setbeamercolor{background canvas}{bg=emcdblue}
-}
-\newcommand{\@emc@colors@light}{
-  \setbeamercolor{normal text}{%
-   fg=black,
-    bg=emcfadedblue
-  }
-  \setbeamercolor{structure}{fg=emcdblue}
-  \setbeamercolor{background canvas}{bg=white}
 }
 
+\newcommand{\@emc@colors@darkblue}{
+ \setbeamercolor{palette primary}{fg=white, bg=emcdblue}
+ \setbeamercolor{palette secondary}{fg=white, bg=emclblue}
+ \setbeamercolor{palette tertiary}{fg=emclblue, bg=emcdblue}
+ \setbeamercolor{palette quaternary}{fg=emcdblue, bg=white}
+ \setbeamercolor{structure}{fg=white, bg=emcdblue}
+ \pgfdeclareimage[width=25mm]{fg:logo}{Logo1DB.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoTextDB.pdf} 
+}
+\newcommand{\@emc@colors@lightblue}{
+ \setbeamercolor{palette primary}{fg=emcdblue, bg=emclblue}
+ \setbeamercolor{palette secondary}{fg=emcdblue, bg=white}
+ \setbeamercolor{palette tertiary}{fg=black, bg=white}
+ \setbeamercolor{palette quaternary}{fg=emclblue, bg=emcdblue}
+ \setbeamercolor{structure}{fg=emcdblue, bg=emclblue}
+ \pgfdeclareimage[width=25mm]{fg:logo}{Logo1LB.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoTextLB.pdf}
+}
+\newcommand{\@emc@colors@white}{
+ \setbeamercolor{palette primary}{fg=emcdblue, bg=white}
+ \setbeamercolor{palette secondary}{fg=emcdblue,bg=emclblue}
+ \setbeamercolor{palette tertiary}{fg=black, bg=emclblue}
+ \setbeamercolor{palette quaternary}{fg=white, bg=emcdblue}
+ \setbeamercolor{structure}{fg=emcdblue, bg=white}
+ \pgfdeclareimage[width=25mm]{fg:logo}{Logo1.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoText.pdf}
+}
+
+% colour outside of the scheme to get attention
+\setbeamercolor{alerted text}{fg=orange}
+
+% All other colours are derived from this
+
+%--------------------------------------------------
 % General
 
-\setbeamercolor{alerted text}{fg=orange}
-\setbeamercolor{example text}{fg=black}
+
+\setbeamercolor{normal text}{use=palette primary, parent=palette primary, fg=palette primary.fg}
+\setbeamercolor{background canvas}{use=palette primary, parent=palette primary, fg=palette primary.bg}
+\setbeamercolor{example text}{use=palette primary, parent=palette primary, fg=palette primary.fg}
 
 
 
-
-\setbeamercolor{background canvas}{bg=white}
-
-% Palettes
-\setbeamercolor{palette primary}{fg=structure.fg, bg=white}
-\setbeamercolor{palette secondary}{fg=black,bg=white}
-\setbeamercolor{palette tertiary}{fg=emcdblue, bg=emclblue}
-\setbeamercolor{palette quaternary}{fg=white, bg=emcdblue}
 
 \setbeamercolor{titlelike}{use=normal text, parent=normal text}
 \setbeamercolor{author}{use=normal text, parent=normal text, bg=}
 \setbeamercolor{date}{use=normal text, parent=normal text, bg=}
 \setbeamercolor{institute}{use=normal text, parent=normal text, bg=}
-\setbeamercolor*{title page header}{fg=normal text.fg}
-\setbeamercolor{subtitle}{use=palette secondary, fg=palette secondary.fg, bg=}
+\setbeamercolor*{title page header}{use=normal text, parent=normal text, bg=}
+\setbeamercolor{subtitle}{use=palette tertiary, fg=palette tertiary.fg, bg=}
 \setbeamercolor{section in head/foot}{fg=normal text.fg, bg=}
 \setbeamercolor{title in head/foot}{fg=normal text.fg, bg=}
 
-\setbeamercolor{block body}{bg=palette tertiary.bg, fg=palette tertiary.fg}
-\setbeamercolor{block title alerted}{use={normal text,alerted text, palette tertiary},fg=alerted text.fg,bg=palette tertiary.bg}
+\setbeamercolor{block body}{parent=tertiary, bg=palette tertiary.bg, fg=palette tertiary.fg}
 \setbeamercolor{block title}{fg=palette tertiary.fg, bg=palette tertiary.bg}
+\setbeamercolor{block title alerted}{use={normal text,alerted text, palette secondary},fg=alerted text.fg, bg=palette tertiary.bg}
+\setbeamercolor{block body alerted}{use=palette tertiary, parent=palette secondary}
 \setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=palette tertiary.bg}
+\setbeamercolor{block body example}{use=block body, parent=block body}
 \setbeamercolor{fine separation line}{}
 \setbeamercolor{item projected}{fg=emclblue}
-
+\setbeamercolor{enumerate item}{use=palette tertiary,parent=palette tertiary}
+\setbeamercolor{description item}{use=palette tertiary,parent=palette tertiary}
 \setbeamercolor{frametitle}{%
   use=palette tertiary,
   parent=palette tertiary,
   bg=
 }
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
-\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{parent=palette quaternary}
+\setbeamercolor{palette sidebar secondary}{parent=palette secondary}
+\setbeamercolor{palette sidebar tertiary}{parent=palette  tertiary}
 \setbeamercolor{section in sidebar}{fg=emcdblue}
 \setbeamercolor{section in sidebar shaded}{fg=grey}
 \setbeamercolor{separation line}{}
@@ -102,35 +101,9 @@
 \setbeamercolor{subsection in sidebar}{fg=black}
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
 
-\setbeamercolor{page number in head/foot}{fg=black, bg=}
+\setbeamercolor{page number in head/foot}{parent=normal text}
 
-%\newcommand{\@emc@block@transparent}{
-%  \setbeamercolor{block title}{use=normal text, parent=normal text}
-%}
-%\newcommand{\@emc@block@fill}{
-%  \setbeamercolor{block title}{%
-%    use=normal text,
-%    fg=normal text.fg,
-%    bg=normal text.bg!80!fg
-%  }
-%}
-%\setbeamercolor{block title alerted}{%
-%    use={block title, alerted text},
-%    bg=block title.bg,
-%    fg=alerted text.fg
-%}
-%\setbeamercolor{block title example}{%
-%    use={block title, example text},
-%    bg=block title.bg,
-%    fg=example text.fg
-%}
-\setbeamercolor{block body alerted}{use=block body, parent=block body}
-\setbeamercolor{block body example}{use=block body, parent=block body}
-%\setbeamercolor{block body}{
-%  use={block title, normal text},
-%  bg=block title.bg!1!normal text.bg
-%}
-%\setbeamercolor{page number in head/foot}{fg=fg!50!bg}
+
 %\@emc@color@setdefaults
 \ProcessPgfPackageOptions{/emc/color}
 \mode<all>

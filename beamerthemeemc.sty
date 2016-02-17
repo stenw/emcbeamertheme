@@ -14,6 +14,7 @@
     /emc/outer,
   }
 }
+
 \newcommand{\@emc@setdefaults}{
   \pgfkeys{/emc/.cd,
  %   titleformat plain=regular,
@@ -27,13 +28,18 @@
 \usepackage{eulervm}       
 \usepackage[scaled ]{helvet}         
 
-\pgfdeclareimage[width=25mm]{fg:logo}{Logo1.pdf} 
-\pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoText.pdf} 
+
 %\logo{\includegraphics[height=6mm]{logo1NoText.pdf}}
 
 \newcommand*{\instlogo}[1]{}
 \newcommand*{\printinstlogo}{}
 \renewcommand*{\instlogo}[1]{\renewcommand*{\printinstlogo}{#1}}
+
+\newenvironment{slide} % wrapper for frame, wrting Section \\ Subsection in the header, adding lines below header and above footer
+{  
+\begin{frame}[environment=slide]
+\setbeamercolor{background canvas}{bg=white}
+ \end{frame}}
 
 
 \setbeamertemplate{navigation symbols}{}

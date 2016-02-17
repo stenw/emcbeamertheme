@@ -1,7 +1,8 @@
-\documentclass[12pt]{beamer}
+\documentclass[12pt, dutch]{beamer}
 \usepackage{pgfkeys}
 \usepackage{pgfopts}
-\usetheme[color/background=light]{emc}
+\usepackage{babel}
+\usetheme[color/background=lightblue]{emc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -44,6 +45,9 @@ testje2
 \item 2nd level
 \end{itemize}
 \end{itemize}
+\begin{example}[An example]
+This is an example of an example
+\end{example}
 \end{frame}
 
 \begin{frame}{Enumerations}
@@ -59,11 +63,13 @@ testje2
     \begin{alertblock}{Alert}
         Block content.
       \end{alertblock}
-
       \begin{exampleblock}{Example}
         Block content.
-      \end{exampleblock}      
-      
+       \end{exampleblock} 
+      \begin{block}{A block}
+        Block content.
+       \end{block} 
+           
 \end{frame}
 
 \begin{frame}{Math}
@@ -76,7 +82,7 @@ testje2
   A plain sheet
 \end{frame}
  
- \emcset{color/background=dark}
+% \emcset{color/background=darkblue}
 \begin{frame}{A change of color}
 \begin{itemize}
   \item Here we change the color scheme halfway to dark
@@ -84,7 +90,7 @@ testje2
     \item We need to redefine some of the elements on the sheet
 \end{itemize}   
 \end{frame}
- \emcset{color/background=light}
+% \emcset{color/background=lightblue}
 % not yet imp[lemented
 %\plain{Questions?}
 
