@@ -13,7 +13,7 @@
   \begin{tikzpicture}
   \useasboundingbox(0,0) rectangle(\the\paperwidth,0.02625*\the\paperwidth);
    \ifx\insertframesubtitle\@empty%
-     {\node[anchor=west, black,font=\large] at (0.1*\the\paperwidth,0.61){\insertframetitle};%
+     {\node[anchor=west, font=\large] at (0.05*\the\paperwidth,0.61){\insertframetitle};%
  \foreach \x in {0,...,79}%
  \fill[color=structure] (0.0125*\the\paperwidth*\x,0.02*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.02625*\the\paperwidth);}%      
      \else%
@@ -21,6 +21,8 @@
       \node[anchor= west, black,font=\small] at (0.2*\the\paperwidth,0.51){\insertframesubtitle};}%
      \fi
  \end{tikzpicture}
+   \hfill%;
+  {\pgftext[at=\pgfpointxy{-0.1}{0.5},right,base]{\pgfuseimage{fg:logoNoText}}}%
  \end{beamercolorbox}
 }
 
@@ -40,10 +42,21 @@
 \leavevmode%
 \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
     \usebeamerfont{title in head/foot}\insertshorttitle\hfill%
-\insertframenumber\,/\,\inserttotalframenumber %\pgfuseimage{fg:logoNoText}
-	{\pgftext[at=\pgfpointxy{0}{0.4},right,base]{\pgfuseimage{fg:logoNoText}}}%
+\insertframenumber\,/\,\inserttotalframenumber 
+%	{\pgftext[at=\pgfpointxy{0}{0.4},right,base]%
+%	{\pgfuseimage{fg:logoNoText}}%
+%	}%
 \end{beamercolorbox}}%
 \vskip0pt%
 \fi
 }
+
+
+%\defbeamertemplate*{headline}{emc}{%
+%\leavevmode%
+%\hfill
+%\pgfuseimage{fg:logoNoText}%
+%}%
+
+
 \mode<all>
