@@ -1,5 +1,5 @@
 \ProvidesPackage{beamerouterthemeemc}[2016/02/27 EMC Beamer theme]
-
+\usepackage{etoolbox}
 \mode<presentation>
 % Frame title
 
@@ -15,12 +15,14 @@
   \begin{tikzpicture}
   \useasboundingbox(0,0) rectangle(\the\paperwidth,0.02625*\the\paperwidth);
    \ifx\insertframesubtitle\@empty%
-     {\node[anchor=west, font=\large] at (0.05*\the\paperwidth,0.61){\insertframetitle};%
+     {\node[anchor=west, font=\large] at (0.05*\the\paperwidth,0.62){\insertframetitle};%
  \foreach \x in {0,...,79}%
  \fill[color=structure] (0.0125*\the\paperwidth*\x,0.02*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.02625*\the\paperwidth);}%      
      \else%
-     {\node[anchor= west, black,font=\large] at (0.1*\the\paperwidth,0.31){\insertframetitle};%
-      \node[anchor= west, black,font=\small] at (0.2*\the\paperwidth,0.51){\insertframesubtitle};}%
+     {\node[anchor= west,font=\large] at (0.05*\the\paperwidth,0.74){\insertframetitle};%
+      \node[anchor= west,font=\small] at (0.05*\the\paperwidth,0.38){\insertframesubtitle};%
+ \foreach \x in {0,...,79}%
+ \fill[color=structure] (0.0125*\the\paperwidth*\x,0.008*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.01425*\the\paperwidth);}%       
      \fi
  \end{tikzpicture}
    \hfill%;
@@ -53,6 +55,43 @@
 \fi
 }
 
+
+% \subsubsection{Standout frames}
+%
+% \themename offers a custom frame format with large, centered text and an
+% inverted background. To use it, add the key |standout| to the frame:
+% |\begin{frame}[standout] ... \end{frame}|.
+%
+% \begin{macro}{standout}
+%
+%     Optional arguments to Beamer's frames are implemented using
+%     |\define@key| from the |keyval| package, which will execute code when the
+%     defined option is called. 
+%
+%    \begin{macrocode}
+\providebool{emc@standout}
+\define@key{beamerframe}{standout}[true]{%
+  \booltrue{emc@standout}
+      \extractcolorspecs{normal text.bg}{\model}{\mybgcolor}
+          \extractcolorspecs{emclblue}{\model}{\mycolorlb} 
+      \extractcolorspecs{emcdblue}{\model}{\mycolordb} 
+      \extractcolorspecs{white}{\model}{\mycolorw} 
+  \begingroup
+\ifx\mybgcolor\mycolorlb \emcset{color/background=white} \fi
+\ifx\mybgcolor\mycolordb \emcset{color/background=lightblue} \fi
+\ifx\mybgcolor\mycolorw \emcset{color/background=darkblue} \fi
+}
+
+% close group at end of slide by appending to reseteecodes
+\apptocmd{\beamer@reseteecodes}{%
+    \ifbool{emc@standout}{
+      \endgroup
+\ifx\mybgcolor\mycolorlb \emcset{color/background=lightblue} \fi
+\ifx\mybgcolor\mycolordb \emcset{color/background=darkblue} \fi
+\ifx\mybgcolor\mycolorw \emcset{color/background=white} \fi
+      \boolfalse{emc@standout}
+    }{}
+}{}{}% <success><failure>
 
 %\defbeamertemplate*{headline}{emc}{%
 %\leavevmode%

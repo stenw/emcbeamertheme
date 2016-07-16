@@ -12,6 +12,7 @@
 
 \pgfkeys{
   /emc/color/background/.cd,
+    .store in=\bgcol,
     .is choice,
     darkblue/.code=\@emc@colors@darkblue,
     lightblue/.code=\@emc@colors@lightblue,
@@ -23,49 +24,16 @@
   }
 }
 
-\newcommand{\@emc@colors@darkblue}{
- \setbeamercolor{palette primary}{fg=white, bg=emcdblue}
- \setbeamercolor{palette secondary}{fg=white, bg=emclblue}
- \setbeamercolor{palette tertiary}{fg=emclblue, bg=emcdblue}
- \setbeamercolor{palette quaternary}{fg=emcdblue, bg=white}
- \setbeamercolor{structure}{fg=white, bg=emcdblue}
- \pgfdeclareimage[width=35mm]{fg:logo}{Logo1DB.pdf} 
- \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoTextDB.pdf} 
-}
-\newcommand{\@emc@colors@lightblue}{
- \setbeamercolor{palette primary}{fg=emcdblue, bg=emclblue}
- \setbeamercolor{palette secondary}{fg=emcdblue, bg=white}
- \setbeamercolor{palette tertiary}{fg=black, bg=white}
- \setbeamercolor{palette quaternary}{fg=emclblue, bg=emcdblue}
- \setbeamercolor{structure}{fg=emcdblue, bg=emclblue}
- \pgfdeclareimage[width=35mm]{fg:logo}{Logo1LB.pdf} 
- \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoTextLB.pdf}
-}
-\newcommand{\@emc@colors@white}{
- \setbeamercolor{palette primary}{fg=emcdblue, bg=white}
- \setbeamercolor{palette secondary}{fg=emcdblue,bg=emclblue}
- \setbeamercolor{palette tertiary}{fg=black, bg=emclblue}
- \setbeamercolor{palette quaternary}{fg=white, bg=emcdblue}
- \setbeamercolor{structure}{fg=emcdblue, bg=white}
- \pgfdeclareimage[width=35mm]{fg:logo}{Logo1.pdf} 
- \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoText.pdf}
-}
-
-% colour outside of the scheme to get attention
-\setbeamercolor{alerted text}{fg=orange}
-
+\setbeamercolor{alerted text}{use=normal text,fg=orange, bg=normal text.bg}
+\newcommand{\defallcolors}{
 % All other colours are derived from this
 
 %--------------------------------------------------
 % General
 
 
-\setbeamercolor{normal text}{use=palette primary, parent=palette primary, fg=palette primary.fg}
-\setbeamercolor{background canvas}{use=palette primary, parent=palette primary, fg=palette primary.bg}
-\setbeamercolor{example text}{use=palette primary, parent=palette primary, fg=palette primary.fg}
-
-
-
+\setbeamercolor{background canvas}{use=palette primary, parent=palette primary, fg=palette primary.bg, bg=palette primary.bg}
+\setbeamercolor{example text}{use=palette primary, parent=palette primary, fg=palette primary.fg, bg=palette primary.bg}
 
 \setbeamercolor{titlelike}{use=normal text, parent=normal text}
 \setbeamercolor{author}{use=normal text, parent=normal text, bg=}
@@ -73,14 +41,14 @@
 \setbeamercolor{institute}{use=normal text, parent=normal text, bg=}
 \setbeamercolor*{title page header}{use=normal text, parent=normal text, bg=}
 \setbeamercolor{subtitle}{use=palette tertiary, fg=palette tertiary.fg, bg=}
-\setbeamercolor{section in head/foot}{fg=normal text.fg, bg=}
-\setbeamercolor{title in head/foot}{fg=normal text.fg, bg=}
+\setbeamercolor{section in head/foot}{use=normal text, fg=normal text.fg, bg=}
+\setbeamercolor{title in head/foot}{use=normal text, fg=normal text.fg, bg=}
 
-\setbeamercolor{block body}{parent=tertiary, bg=palette tertiary.bg, fg=palette tertiary.fg}
-\setbeamercolor{block title}{fg=palette tertiary.fg, bg=palette tertiary.bg}
-\setbeamercolor{block title alerted}{use={normal text,alerted text, palette secondary},fg=alerted text.fg, bg=palette tertiary.bg}
-\setbeamercolor{block body alerted}{use=palette tertiary, parent=palette secondary}
-\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=palette tertiary.bg}
+\setbeamercolor{block body}{use=palette secondary,parent=palette secondary, bg=palette secondary.bg, fg=palette secondary.fg}
+\setbeamercolor{block title}{use= palette secondary,fg=palette secondary.fg, bg=palette secondary.bg}
+\setbeamercolor{block title alerted}{use={normal text,alerted text,palette secondary}, parent=palette secondary,fg=alerted text.fg, bg=palette secondary.bg}
+\setbeamercolor{block body alerted}{use=palette secondary, parent=palette secondary}
+\setbeamercolor{block title example}{use={normal text,example text,palette secondary},fg=normal text.fg,bg=palette secondary.bg}
 \setbeamercolor{block body example}{use=block body, parent=block body}
 \setbeamercolor{fine separation line}{}
 \setbeamercolor{item projected}{fg=emclblue}
@@ -104,6 +72,48 @@
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
 
 \setbeamercolor{page number in head/foot}{parent=normal text}
+
+\setbeamercolor{section in toc}{parent=normal text,fg=normal text.fg}
+\setbeamercolor{subsection in toc}{parent=normal text, fg=normal text.fg}
+}
+
+\newcommand{\@emc@colors@darkblue}{
+ \setbeamercolor{palette primary}{fg=white, bg=emcdblue}
+ \setbeamercolor{palette secondary}{fg=emcdblue, bg=emclblue}
+ \setbeamercolor{palette tertiary}{fg=emclblue, bg=emcdblue}
+ \setbeamercolor{palette quaternary}{fg=emcdblue, bg=white}
+ \setbeamercolor{structure}{fg=white, bg=emcdblue}
+ \setbeamercolor{normal text}{use=palette primary, parent=palette primary, fg=palette primary.fg, bg=palette primary.bg}
+ \pgfdeclareimage[width=35mm]{fg:logo}{./Logo1DB.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{./logo2NoTextDB.pdf}
+ \defallcolors 
+}
+\newcommand{\@emc@colors@lightblue}{
+ \setbeamercolor{palette primary}{fg=emcdblue, bg=emclblue}
+ \setbeamercolor{palette secondary}{fg=emcdblue, bg=white}
+ \setbeamercolor{palette tertiary}{fg=black, bg=white}
+ \setbeamercolor{palette quaternary}{fg=emclblue, bg=emcdblue}
+ \setbeamercolor{structure}{fg=emcdblue, bg=emclblue}
+ \setbeamercolor{normal text}{use=palette primary, parent=palette primary, fg=palette primary.fg, bg=palette primary.bg}
+ \pgfdeclareimage[width=35mm]{fg:logo}{Logo1LB.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoTextLB.pdf}
+ \defallcolors
+}
+
+\newcommand{\@emc@colors@white}{
+ \setbeamercolor{palette primary}{fg=emcdblue, bg=white}
+ \setbeamercolor{palette secondary}{fg=emcdblue,bg=emclblue}
+ \setbeamercolor{palette tertiary}{fg=black, bg=emclblue}
+ \setbeamercolor{palette quaternary}{fg=white, bg=emcdblue}
+ \setbeamercolor{structure}{fg=emcdblue, bg=white}
+ \setbeamercolor{normal text}{use=palette primary, parent=palette primary, fg=palette primary.fg, bg=palette primary.bg}
+ \pgfdeclareimage[width=35mm]{fg:logo}{Logo1.pdf} 
+ \pgfdeclareimage[width=1cm]{fg:logoNoText}{logo2NoText.pdf}
+ \defallcolors
+}
+
+% colour outside of the scheme to get attention
+
 
 
 %\@emc@color@setdefaults

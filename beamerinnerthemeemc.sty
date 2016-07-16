@@ -1,17 +1,46 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerinnerthemeemc}[2016/02/27 EMC Beamer theme]
 
+\RequirePackage{pgfopts}
+
+\pgfkeys{/emc/inner/titlepage/.default=titlepage
+}
+
+\pgfkeys{
+  /emc/inner/titlepage/.cd,
+    .is choice,
+    notitlepage/.code=\@emc@inner@notitlepage,
+    titlepage/.code=\@emc@inner@titlepage
+}
+\newcommand{\emc@inner@setdefaults}{
+  \pgfkeys{/emc/inner/.cd,
+    titlepage=titlepage
+  }
+}
+
+\newcommand{\@emc@inner@notitlepage}{
+\def\titlepagedrawing{
+% do nothing;
+}
+}
+\newcommand{\@emc@inner@titlepage}{
+\def\titlepagedrawing{
+  \fill[color=bg] (0,0.8*\the\paperheight) rectangle(\the\paperwidth,\the\paperheight);
+  \foreach \x in {0,...,79}
+     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.6*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.60625*\the\paperwidth);
+  \foreach \x in {0,...,79}
+     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth);
+}
+}
+
+
 \mode<presentation>
 \setbeamertemplate{background}{
 \usebeamercolor{palette tertiary}%
  \begin{tikzpicture}
   \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
    \ifnum\thepage=1\relax%
-  \fill[color=bg] (0,0.8*\the\paperheight) rectangle(\the\paperwidth,\the\paperheight);
-  \foreach \x in {0,...,79}
-     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.6*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.60625*\the\paperwidth);
-  \foreach \x in {0,...,79}
-     \fill[color=structure] (0.0125*\the\paperwidth*\x,0.03*\the\paperwidth) rectangle(0.0125*\the\paperwidth*\x + 0.00625*\the\paperwidth,0.03625*\the\paperwidth);
+  \titlepagedrawing
   \fi      
   \ifnum\thepage>1\relax%
   \foreach \x in {0,...,79}
@@ -24,9 +53,9 @@
  \begin{beamercolorbox}[wd=12cm, leftskip=3cm, sep= 8pt, #1]{title page header}
   \centering\usebeamerfont{title}\inserttitle\par%
  \end{beamercolorbox}%
- \begin {beamercolorbox}[sep=0pt]{subtitle}
+ \begin {beamercolorbox}[wd=12cm, leftskip=3cm, sep= 8pt, #1]{subtitle}
 		\centering\usebeamerfont{subtitle in title page}\insertsubtitle
-	\end {beamercolorbox}
+ \end {beamercolorbox}
  \vskip0.45cm%
  {\pgfuseimage{fg:logo}}%
  	%{\pgftext[at=\pgfpointxy{2.21}{0.2},right,base]{\pgfuseimage{fg:logo}}}%
@@ -46,5 +75,6 @@
 
 \setbeamertemplate{sections/subsections in toc}[square]
 \setbeamertemplate{items}[square]
-
+\emc@inner@setdefaults
+\ProcessPgfPackageOptions{/emc/inner}
 \mode<all>

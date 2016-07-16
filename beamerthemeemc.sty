@@ -43,6 +43,24 @@
 \setbeamercolor{background canvas}{bg=white}
  \end{frame}}
 
+%
+% Attention
+%
+
+\mode
+<all>
+{
+  \newenvironment{attentionenv}{\begin{altenv}%
+      {\usebeamertemplate{attention text begin}\usebeamercolor[fg]{palette tertiary}\usebeamerfont{alerted text}}
+      {\usebeamertemplate{attention text end}}{\color{.}}{}}{\end{altenv}}
+
+  \newcommand<>{\attention}[1]{\begin{attentionenv}#2\relax#1\end{attentionenv}}
+}
+
+%\makeatletter
+%\define@key{beamerframe}{wide}[30pt]{%
+%  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+%\makeatother
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[default]

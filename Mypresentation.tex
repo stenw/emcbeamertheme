@@ -1,8 +1,9 @@
 \documentclass[12pt, dutch]{beamer}
 \usepackage{pgfkeys}
+% \usepackage{trace-pgfkeys}
 \usepackage{pgfopts}
 \usepackage{babel}
-\usetheme[color/background=white]{emc}
+\usetheme[color/background=white, inner/titlepage=notitlepage]{emc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -18,7 +19,9 @@
 %\institute{} 
 %\date{} 
 %\subject{} 
-%\emcset{color/background=light}
+
+\newcommand{\extractRGB}[1]{\extractcolorspecs{#1}{\model}{\mycolor} \convertcolorspec{\model}{\mycolor}{RGB}\printcol \printcol}
+
 \begin{document}
 \begin{frame}
 	\titlepage
@@ -35,15 +38,38 @@
 
 \section{The First Section}
 
-\begin{frame}{myframetitle}
-testtje
-testje2
+\begin{frame}{Example sheet}
+some text \\
+some more text \\
+%\pgfkeysvalueof{/emc/color/background/darkblue} hg2
+%\pgfkeys{/emc/color/background/.show value}
+\alert{alert} 
+\attention{attention}
+\emph{emphasis}
 \begin{itemize}
 \item an item
 \item o \alert{no}!
 \begin{itemize}
 \item 2nd level
 \end{itemize}
+\end{itemize}
+\begin{example}[An example]
+This is an example of an example
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}{Slide with subtitle}
+    \framesubtitle{This is the subtitle}
+some text \\
+some more text \\
+\alert{alert} 
+\attention{attention}
+\emph{emphasis}
+\begin{itemize}
+\item an item
+\item o \alert{no}!
 \end{itemize}
 \begin{example}[An example]
 This is an example of an example
@@ -69,8 +95,24 @@ This is an example of an example
       \begin{block}{A block}
         Block content.
        \end{block}        
-\begin{beamercolorbox}[wd=\linewidth,ht=2.5ex,dp=1.125ex,center]{palette secondary}
-Just a beamercolorbox
+\begin{beamercolorbox}[wd=\linewidth, ht=2.5ex, dp=1.125ex,center]{palette secondary}
+Just a beamercolorbox 
+\end{beamercolorbox}
+           
+\end{frame}
+
+\begin{frame}{More Blocks}
+    \begin{alertblock}{}
+        Block content without a title.
+      \end{alertblock}
+      \begin{exampleblock}{Example}
+        Block content.
+       \end{exampleblock} 
+      \begin{block}{A block}
+        Block content.
+       \end{block}        
+\begin{beamercolorbox}[wd=\linewidth, ht=2.5ex, dp=1.125ex,center]{palette secondary}
+Just a beamercolorbox 
 \end{beamercolorbox}
            
 \end{frame}
@@ -85,14 +127,48 @@ Just a beamercolorbox
   A plain sheet
 \end{frame}
  
-% \emcset{color/background=darkblue}
-\begin{frame}{A change of color}
-\begin{itemize}
-  \item Here we change the color scheme halfway to dark
-    \item However it does not completely work yet.
-    \item We need to redefine some of the elements on the sheet
-\end{itemize}   
-\end{frame}
+\begin{frame}[standout]{Standout!}
+  A sheet that stands out!
+  \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+         \begin{block}{A block}
+        Block content.
+       \end{block} 
+      \begin{exampleblock}{Example}
+        Block content.
+       \end{exampleblock} 
+      \begin{block}{A block}
+        Block content.
+       \end{block}        
+\end{frame} 
+
+\begin{frame}{Back to normal}
+  A sheet that stands out!
+  \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+      \begin{exampleblock}{Example}
+        Block content.
+       \end{exampleblock} 
+      \begin{block}{A block}
+        Block content.
+       \end{block}        
+\end{frame} 
+ 
+\begin{frame}{Back to normal II}
+  Back to normal colours again
+  \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+      \begin{exampleblock}{Example}
+        Block content.
+       \end{exampleblock} 
+      \begin{block}{A block}
+        Block content.
+       \end{block}        
+\end{frame} 
+
 % \emcset{color/background=lightblue}
 % not yet imp[lemented
 %\plain{Questions?}
