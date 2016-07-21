@@ -1,7 +1,7 @@
 \ProvidesPackage{beamerthemeemc}[2016/02/27 EMC Beamer theme]
 
 \mode<presentation>
-
+\RequirePackage[customcolors]{dynblocks}
 \RequirePackage{tikz}
 \RequirePackage{pgfopts}
 \RequirePackage[absolute,overlay]{textpos} 
@@ -55,12 +55,36 @@
       {\usebeamertemplate{attention text end}}{\color{.}}{}}{\end{altenv}}
 
   \newcommand<>{\attention}[1]{\begin{attentionenv}#2\relax#1\end{attentionenv}}
+  
+  
+\defbeamertemplate{blocknt begin}{rounded}[1][shadow=false]
+{
+  \par\vskip\medskipamount%
+  \begin{beamerboxesrounded}[upper=block title,lower=block body,#1]%
+    {\raggedright\usebeamerfont*{block title}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body}%
+}
+\defbeamertemplate{blocknt end}{rounded}[1][]
+{\end{beamerboxesrounded}\vskip\smallskipamount} 
+  
+   \newenvironment<>{blocknotitle}[1]{%
+\begin{actionenv}#2%
+     \def\insertblocktitle{#1}%
+      \par%
+      \usebeamertemplate{blocknt begin}}
+    {\par%
+      \usebeamertemplate{blocknt end}%
+    \end{actionenv}}
 }
 
 %\makeatletter
 %\define@key{beamerframe}{wide}[30pt]{%
 %  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
 %\makeatother
+
+
+
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[default]

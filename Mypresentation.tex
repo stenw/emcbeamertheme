@@ -3,13 +3,16 @@
 % \usepackage{trace-pgfkeys}
 \usepackage{pgfopts}
 \usepackage{babel}
+
 \usetheme[color/background=white, inner/titlepage=notitlepage]{emc}
+
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \author{Sten Willemsen}
+
 \title{EMC Presentation}
 \subtitle{AaAaA}
 %\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo1NoText.pdf}}
@@ -58,12 +61,21 @@ This is an example of an example
 \end{example}
 \end{frame}
 
-
+\begin{frame}{Dynamic blocks}
+\begin{dynblock}
+\opaqueblock <1>{hello  this is a dynamic  block
+with an  itemize  environment:
+\begin{itemize}
+\item  hello
+\item  hello  again
+\end{itemize}
+}
+\end{dynblock}
+\end{frame}
 
 \begin{frame}{Slide with subtitle}
     \framesubtitle{This is the subtitle}
-some text \\
-some more text \\
+
 \alert{alert} 
 \attention{attention}
 \emph{emphasis}
@@ -71,9 +83,10 @@ some more text \\
 \item an item
 \item o \alert{no}!
 \end{itemize}
-\begin{example}[An example]
-This is an example of an example
-\end{example}
+    \begin{blocknotitle}{aap}
+         No title!
+      \end{blocknotitle}
+
 \end{frame}
 
 \begin{frame}{Enumerations}
